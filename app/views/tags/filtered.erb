@@ -1,0 +1,4 @@
+<h1>Links filtered by tag @filter</h1>
+<% @tags.each do |tag| %>
+  <%= tag.links.map(&:title) if tag.name == @filter %>
+  <% end %>

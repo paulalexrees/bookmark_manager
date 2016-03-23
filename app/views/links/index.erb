@@ -7,7 +7,7 @@
       <br>
       URL:   <%= link.url %>
       <br>
-      Tags: <% link.tags.each do |t| %><%= t.name %> <% end %>
+      Tags: <%= link.tags.map(&:name) %>
     </li>
   <% end %>
 </ul>

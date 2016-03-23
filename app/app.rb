@@ -33,6 +33,12 @@ class Bookmark < Sinatra::Base
     erb :'links/tags'
   end
 
+  get '/tags/search' do
+    @filter = "search"
+    @tags = Tag.all
+    erb :'tags/filtered'
+  end
+
   # start the server if ruby file executed directly
   run! if app_file == $0
 end
