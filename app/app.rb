@@ -19,8 +19,11 @@ class Bookmark < Sinatra::Base
 
   post '/links' do
     link = Link.create(title: params[:title], url: params[:url])
-    tag = Tag.create(name: params[:tag])
-    LinkTag.create(:link => link, :tag => tag)
+    tag = []
+    params[:tag].split(" ").each { |tag_name| link.tags << Tag.create(name: tag_name) }
+    #tag = Tag.create(name: params[:tag])
+    #LinkTag.create(:link => link,  :tag => tag)
+    link.save
     redirect '/links'
   end
 
@@ -33,10 +36,10 @@ class Bookmark < Sinatra::Base
     erb :'links/tags'
   end
 
-  get '/tags/search' do
-    @filter = "search"
-    @tags = Tag.all
-    erb :'tags/filtered'
+  get '/tags/:name' do
+    tag = Tag.all(name: params[:name])
+    @links = tag ? tag.links : []
+    erb :'links/index'
   end
 
   # start the server if ruby file executed directly
