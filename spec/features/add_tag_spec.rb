@@ -5,7 +5,12 @@ feature 'adding a tag to a link' do
     fill_in(:url, with: "www.facebook.com")
     fill_in(:tag, with: "Social Media")
     click_button("Submit")
-    visit '/links/tags'
-    expect(page).to have_content("Social Media")
+    
+    link = Link.first
+    within 'ul#links' do
+      expect(page).to have_content("Social Media")
+    end
+
+    expect(link.tags.map(&:name)).to include("Social Media")
   end
 end
