@@ -7,6 +7,7 @@ gem 'dm-postgres-adapter'
 gem 'sinatra'
 gem 'database_cleaner'
 gem 'selenium-webdriver'
+gem 'pg'
 
 
 group :test do
