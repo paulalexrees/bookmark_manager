@@ -1,5 +1,9 @@
 <h1> Links </h1>
 
+<% if current_user %>
+  Hi, <%= current_user.email %>
+<% end %>
+
 <form action='/links/:name' />Filter by: <input type='text' name='name' /> </form>
 
 <ul id='links'>
