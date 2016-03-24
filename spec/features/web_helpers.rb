@@ -11,5 +11,6 @@ def sign_up
   visit('/new')
   fill_in(:email, with: 'paul@paul.com')
   fill_in(:password, with: 'password123')
+  fill_in(:password_confirmation, with: 'password123')
   click_button('Signup')
 end
